@@ -1,0 +1,99 @@
+2.1
+Protocolos
+2.1.1 Voice Over Internet Protocol
+VoIP (Voice Over Internet Protocol) é um protocolo definido como um conjunto de tecno-
+logias e componentes que permitem o estabelecimento de uma ligação através da Internet, para
+comunicação de voz ou sessões de multimédia [5]. A implementação deste sistema tem como
+base protocolos específicos para sinalização e transporte. Os protocolos de sinalização servem
+para estabelecer, modificar ou terminar uma sessão de comunicação. Os protocolos de transporte
+servem para fazer a entrega dos pacotes que contêm dados, após a sessão ser estabelecida corre-
+tamente. Os protocolos mais utilizados para sinalização são o SIP ( Session Initiation Protocol) e
+o IAX ( Inter Asterisk eXchange). Para o transporte são utilizados os protocolos RTP ( Real-Time
+Protocol) e RTCP ( Real-time Transport Control Protocol) [6].
+2.1.2 Session Initiation Protocol
+SIP Session Initiation Protocol é um protocolo da camada de aplicação responsável por esta-
+belecer, modificar e terminar sessões de troca de dados entre UA’s (user agents) [7].
+Numa rede VoIP, este protocolo é usado para iniciar uma chamada via Internet. Um UA pode
+ser um cliente ou um servidor, sendo que, o cliente é responsável por iniciar os pedidos, o servidor
+faz o processamento dos mesmos. Ou seja, este protocolo utiliza o modelo request and reply para
+iniciar as sessões de comunicação.
+Os servidores SIP são aplicações que recebem notificações e executam operações em confor-
+midade com a solicitação efetuada. Existem três tipos de servidores SIP: proxy SIP, redirect SIP e
+register SIP. O servidor proxy faz o encaminhamento entre o domínio de origem e o domínio de
+destino quando recebe um pedido. O servidor de redirecionamento não encaminha pedidos SIP,
+apenas responde ao UA de origem qual é o endereço do UA de destino ou qual o endereço do
+56
+Revisão Bibliográfica
+servidor mais próximo. O servidor de registo aceita pedidos de registo de utilizadores e contém
+dados sobre a localização dos UA [8].
+Figura 2.1: SIP Call Setup
+A figura 2.1 [6] ilustra um exemplo de estabelecimento de uma sessão utilizando este proto-
+colo. Para uma sessão se iniciar é necessário que o cliente esteja registado um servidor VoIP, que
+serve como gateway para fazer o encaminhamento do pedido para o respetivo UA de destino. O
+utilizador A faz o pedido para estabelecer uma sessão com o utilizador B, começando por fazer
+o pedido através da mensagem de INVITE para o utilizador B através do servidor proxy. Um
+INVITE contém informação necessária para o servidor de proxy autenticar o pedido e fazer o seu
+encaminhamento. O utilizador B ao receber o INVITE responde com a mensagem de OK, con-
+firmando que existem condições para se iniciar a sessão. Assim sendo, o utilizador B recebe a
+resposta e manda o ACK para confirmar que também se encontra em condições para a chamada.
+A sessão é estabelecida entre as duas entidades (UA’s) e termina com a mensagem de BYE e
+posterior recessão de um OK [6].
+2.1.3
+Inter Asterisk eXchange
+IAX é um protocolo desenvolvido pela Digium com o objetivo de estabelecer comunicação
+entre servidores Asterisk, por forma a combater algumas limitações impostas pelo SIP. O IAX é
+um protocolo mais flexível e mais facilmente configurável, visto que o seu código fonte é dispo-
+nibilizado podendo ser alterado conforme as características do sistema [9].
+IAX é um protocolo all-in-one da camada de aplicação que combina os serviços de sinalização
+e dados na mesma stream de comunicação. Ao utilizar um única stream de dados UDP (User Da-
+tagram Protocol), tipicamente, na porta 4569, tem a vantagem de simplificar a gestão de rede e de
+firewall uma vez que consegue eliminar a necessidade de uso de outros protocolos para contornar
+o NAT (Network Address Translation) [10].2.1 Protocolos
+7
+2.1.4 Real-Time Transport Protocol
+RTP (Real-Time Transport Protocol) é um protocolo definido pela RFC 3550, para transporte
+de informação ponto-a-ponto, usualmente no transporte de dados como áudio ou vídeo, através de
+uma rede. Não garante por si só reserva de recursos e qualidade de serviço em serviços de tempo
+real [11]. Este protocolo é conjugado com o RTP Control Protocol (RTCP), que faz a gestão de
+alocação de recursos na rede para garantir uma determinada qualidade de serviço.
+2.1.5 Hypertext Transfer Protocol
+HTTP (Hypertext Transfer Protocol) é um protocolo da camada de aplicação responsável por
+transmitir informação através da Internet [12]. Este protocolo designa-se como sendo um gené-
+rico e stateless, o que significa que não precisa necessariamente que o servidor HTTP guarde
+informação acerca dos pedidos, da sua duração ou mesmo acerca do utilizador. As aplicações web
+são capazes de guardar informação a partir decookies ou mesmo usando determinadas variáveis
+escondidas e embutidas nos formulários.
+Cookies HTTP cookie são um elemento chave do protocolo HTTP que a maior parte das apli-
+cações web dependem. São frequentemente utilizadas como um veículo para explorar vulnerabi-
+lidades [13]. O mecanismo das cookies passa por um envio de ficheiro do servidor para o browser
+do utilizador, sendo que, o browser pode guardar e mandar de volta após novo pedido ao browser.
+Tipicamente, as cookies são usadas se dois pedidos forem feitos a partir do mesmo browser, desta
+forma, é possível, por exemplo, manter o login de um determinado utilizador [14]. A emissão da
+cookie é feita do lado do servidor pelo cabeçalho de resposta Set-Cookie, este cabeçalho inclui
+atributos opcionais que dependem de como o browser controla a cookie, entre eles:
+• Expires: representa a validade da cookie.
+• Domain: especifica o domínio para o qual a cookie é válida.
+• Path: URL para o qual a cookie é valida
+• Secure: define se a cookie é enviada apenas em HTTPS
+HTTPS HTTPS é uma implementação na qual existe um camada adicional que encripta a co-
+municação, TLS (Transport Layer Security). A motivação para a criação desta adaptação passa
+pela proteção da integridade dos dados, ou seja, se se captar uma ligação que use HTTPS os dados
+estão encriptados.
+O HTTPS é um protocolo que usa a porta TCP/IP 443 por definição e a comunicação é feita,
+entre cliente e servidor, via request/response. Os pedidos podem ser enviados via URL (Uniform
+Resource Locators), no qual se encontra o domínio e o path para a página a ser acedida. Os pedidos
+têm métodos associados de modo a desencadearem a ação desejada aquando de um pedido, os
+métodos mais utilizados são:8
+Revisão Bibliográfica
+• GET: faz o fetch de um determinado recurso. A página recebe via URL ou por formulário a
+informação necessária para o servidor encontrar e retornar o recurso.
+• POST: criação de um novo recurso, ou seja, este pedido tem informação (payload) específica
+para obter um novo recurso.
+Para além deste métodos, outro elemento importante na estrutura deste protocolo são os status
+codes, que indicam como é que foi interpretado no servidor o pedido feito pelo cliente. Podem
+ser [15]:
+• 2xx - Indicam que o pedido foi devidamente processado, havendo variações para o caso de
+o conteúdo estar ou não completo.
+• 3xx - Indica que é necessário redirecionar o pedido.
+• 4xx - Indica que o pedido está mal formulado ou que a página se encontra inválida.
+• 5xx - Indica que houve uma falha no servidor durante o processamento do request
